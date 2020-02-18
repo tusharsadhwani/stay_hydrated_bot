@@ -4,6 +4,9 @@ from time import sleep
 from telegram import Bot
 
 from message_hour import MessageTimer
+import logging
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    level=logging.INFO)
 
 india = timezone('Asia/Kolkata')
 indian_time = datetime.now(tz=india)
