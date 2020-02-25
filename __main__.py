@@ -9,14 +9,15 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     level=logging.INFO)
 
 india = timezone('Asia/Kolkata')
-indian_time = datetime.now(tz=india)
 
 with open('token.txt') as f:
     token = f.read().strip()
 
-msg_timer = MessageTimer(indian_time)
+msg_timer = MessageTimer(tz=india)
 
 while True:
+    indian_time = msg_timer.get_current_time()
+    print("Current hour:", indian_time.hour, "\t Next Message at", msg_timer.msg_hour)
     if msg_timer.msg_hour == indian_time.hour:
         Bot(token=token).send_message(170256543, text="Remember to stay hydrated :3")
         msg_timer.increment()
